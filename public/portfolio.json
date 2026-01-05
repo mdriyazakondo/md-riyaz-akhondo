@@ -11,9 +11,9 @@
       "Firebase",
       "Vercel"
     ],
-    "liveUrl": "https://farmer-client-site.vercel.app/",
-    "repoUrl": "https://github.com/mdriyazakondo/Farmer-client-site.git",
-    "image": "https://ik.imagekit.io/2o23yla4n/image.png",
+    "liveUrl": "https://krishilink-farmar.vercel.app/",
+    "repoUrl": "https://github.com/mdriyazakondo/krishilink-farmar.git",
+    "image": "https://ik.imagekit.io/2o23yla4n/krishi-Link.png",
     "tags": ["React", "Agriculture", "Web App"],
     "year": 2025,
     "highlights": [
@@ -48,8 +48,8 @@
 
   {
     "id": "proj-02",
-    "title": "Course Management System",
-    "description": "A full-stack web app for managing courses, instructors, and students. Users can view, add, and enroll in courses with role-based access.",
+    "title": "Book Curriter",
+    "description": "A full-stack web app for managing books, authors, and readers. Users can browse, add, and review books with role-based access.",
     "techStack": [
       "React.js",
       "Node.js",
@@ -57,28 +57,30 @@
       "MongoDB",
       "Tailwind CSS"
     ],
-    "liveUrl": "https://course-manegment-2.vercel.app/",
-    "repoUrl": "https://github.com/mdriyazakondo/course-manegment-2.git",
-    "image": "https://ik.imagekit.io/2o23yla4n/New%20Folder/Screenshot%202025-12-04%20151408.jpg",
+    "liveUrl": "https://book-curriter.vercel.app/",
+    "repoUrl": "https://github.com/mdriyazakondo/book-curriter.git",
+    "image": "https://ik.imagekit.io/2o23yla4n/book-currier.png",
     "tags": ["React", "Full-Stack", "MongoDB"],
-    "year": 2025,
+    "year": 2026,
     "highlights": [
-      "Dynamic course creation and enrollment",
+      "Dynamic book management and user reviews",
       "Responsive UI with Tailwind CSS",
       "RESTful API built with Express.js and MongoDB"
     ],
-
     "category": "Full-Stack",
     "duration": "4 Weeks",
     "role": "Full-Stack Developer",
     "tools": ["VS Code", "MongoDB Atlas", "Postman", "GitHub"],
     "features": [
-      "Course creation with validation",
-      "Enhanced secure API endpoints"
+      "Book addition and review system",
+      "Role-based access for authors and readers",
+      "Secure API endpoints"
     ],
-    "challenges": ["Securing API for course & user data"],
-    "solutions": ["Backend validation and sanitized input handling"],
-    "screenshots": ["/images/course/home.png", "/images/course/dashboard.png"]
+    "challenges": ["Managing user-generated content securely"],
+    "solutions": [
+      "Backend validation, sanitized input handling, and authentication"
+    ],
+    "screenshots": ["/images/book/home.png", "/images/book/dashboard.png"]
   },
 
   {
@@ -92,9 +94,9 @@
       "Velcel",
       "Context API"
     ],
-    "liveUrl": "https://toy-topia-93fc0.web.app/",
-    "repoUrl": "https://github.com/mdriyazakondo/Toy-topia.git",
-    "image": "https://ik.imagekit.io/2o23yla4n/New%20Folder/image.png",
+    "liveUrl": "https://toy-topia-project.vercel.app/",
+    "repoUrl": "https://github.com/mdriyazakondo/toy-topia-project.git",
+    "image": "https://ik.imagekit.io/2o23yla4n/toy-topia.png",
     "tags": ["React", "E-commerce", "Firebase"],
     "year": 2025,
     "highlights": [

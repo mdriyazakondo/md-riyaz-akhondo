@@ -120,7 +120,7 @@ const Project = ({ project }) => {
         {/* See More Button */}
         <Link to={`/project/${project.id}`}>
           <button className="px-6 py-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-md shadow-md hover:scale-105 transition-all w-full cursor-pointer mt-2">
-            See More
+            View More
           </button>
         </Link>
       </div>
