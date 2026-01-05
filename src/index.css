@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Gravitas+One&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Work Sans", sans-serif;
+  color: white;
+  background: black;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease;
+}
+
+.font1 {
+  font-family: "Merriweather", serif;
+}
+.font2 {
+  font-family: "Raleway", sans-serif;
+}
+.font3 {
+  font-family: "Bitcount Single Ink", system-ui;
+}
+.font4 {
+  font-family: "Gravitas One", serif;
+}
+.font5 {
+  font-family: "Bitcount Single Ink", system-ui;
+}
+
+/* Light Mode */
+body.light {
+  background: white;
+  color: #111;
+}
+
+/* Dark Mode */
+body.dark {
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: white;
+}
