@@ -73,12 +73,7 @@ const Home = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center  text-white px-6 overflow-hidden relative py-8 lg:py-0">
-      {/* Dynamic Background Glows */}
-      <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px]  rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px]  rounded-full blur-[150px]" />
-
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-16 w-full z-10">
-        {/* Left Content */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -135,7 +130,6 @@ const Home = () => {
             clean architecture.
           </motion.p>
 
-          {/* Action Buttons */}
           <motion.div
             variants={fadeInUp}
             className="flex flex-wrap justify-center lg:justify-start gap-6 mb-12"
@@ -158,7 +152,6 @@ const Home = () => {
             </Link>
           </motion.div>
 
-          {/* Social Icons */}
           <motion.div
             variants={fadeInUp}
             className="flex items-center gap-4 justify-center lg:justify-start"
@@ -190,7 +183,6 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Section: Orbiting Tech Cloud */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -203,7 +195,6 @@ const Home = () => {
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             className="absolute w-[320px] h-[320px] md:w-[480px] md:h-[480px] border border-dashed border-slate-700/30 rounded-full"
           >
-            {/* Tech Icons circling the profile */}
             {techIcons.map((item, index) => (
               <motion.div
                 key={index}
