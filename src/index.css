@@ -4,12 +4,23 @@
 
 body {
   font-family: "Work Sans", sans-serif;
-  color: white;
-  background: black;
-  background-repeat: no-repeat;
+  color: #e2e8f0; /* Light slate text */
+  /* Professional Dark Backend Color */
+  background-color: #0f172a;
+  background-image: radial-gradient(
+      at 0% 0%,
+      rgba(30, 41, 59, 1) 0,
+      transparent 50%
+    ),
+    radial-gradient(at 50% 0%, rgba(15, 23, 42, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(30, 58, 138, 0.1) 0, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
   transition: all 0.3s ease;
 }
 
+/* Typography Classes */
 .font1 {
   font-family: "Merriweather", serif;
 }
@@ -26,14 +37,17 @@ body {
   font-family: "Bitcount Single Ink", system-ui;
 }
 
-/* Light Mode */
-body.light {
-  background: white;
-  color: #111;
+/* Scrollbar Styling (Optional but Professional) */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-/* Dark Mode */
-body.dark {
-  background: linear-gradient(135deg, #141e30, #243b55);
-  color: white;
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }

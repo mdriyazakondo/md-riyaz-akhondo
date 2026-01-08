@@ -15,12 +15,11 @@ const Main = () => {
       }}
     >
       {/* Persistent background */}
-  
 
       {/* Main content */}
       <div style={{ position: "relative", zIndex: 1 }}>
         <Navbar />
-        <main className="max-w-7xl mx-auto my-6 min-h-[76vh]">
+        <main className="">
           <Outlet />
         </main>
       </div>

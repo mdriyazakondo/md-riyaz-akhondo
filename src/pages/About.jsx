@@ -3,142 +3,135 @@ import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 import { Link } from "react-router-dom";
 
-// Parent container for staggered animation
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.3, // প্রতিটি child 0.3 সেকেন্ডে একটার পর একটা animate হবে
-    },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
-// Each child animation
 const item = {
-  hidden: { opacity: 0, y: -30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const About = () => {
   return (
-    <div className="my-16 md:my-34">
-      <SectionTitle title={"About Me"} />
+    // bg-[#0f172a] বাদ দেওয়া হয়েছে
+    <section className="py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3">
+        <SectionTitle title={"About Me"} />
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-        className="max-w-7xl md:mx-auto  flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 mx-5"
-      >
-        {/* Left Image with animation */}
-        <motion.div variants={item}>
-          <motion.div
-            className="border-2 border-white rounded-full overflow-hidden w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]"
-            animate={{
-              y: [0, -20, 0], // floating animation বড় স্ক্রিনে
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-          >
-            <img
-              className="w-full h-full border-1 rounded-full border-blue-600 object-cover"
-              src="https://ik.imagekit.io/2o23yla4n/Gemini_Generated_Image_8e089v8e089v8e08-removebg-preview.png?updatedAt=1763071776242"
-              alt="Profile"
-            />
-          </motion.div>
-        </motion.div>
-
-        {/* Right Content */}
         <motion.div
           variants={container}
-          className="space-y-4 text-center md:text-left"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24 mt-16"
         >
-          {/* Title */}
-          <motion.div variants={item}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
-              Who I Am
-            </h2>
+          {/* Left Side: Image Section */}
+          <motion.div variants={item} className="relative flex-1 group">
+            {/* Soft Glow behind image */}
+            <div className="absolute -inset-10 bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <motion.div
+              className="relative z-10"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {/* Image with Professional Frame */}
+              <div className="relative border border-slate-700/50 p-4 rounded-[2.5rem] bg-slate-800/20 backdrop-blur-sm">
+                <img
+                  className="w-full h-[320px] sm:h-[450px] lg:h-[480px] rounded-[2rem] object-cover shadow-2xl transition-all duration-500 group-hover:scale-[1.02]"
+                  src="https://ik.imagekit.io/2o23yla4n/Gemini_Generated_Image_8e089v8e089v8e08-removebg-preview.png?updatedAt=1763071776242"
+                  alt="MD RIYAZ AKONDO"
+                />
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Bio 1 */}
-          <motion.p
-            variants={item}
-            className="mb-4 sm:mb-6 text-gray-400 leading-relaxed max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            Hi, I'm{" "}
-            <span className="text-cyan-400 font-semibold">MD RIYAZ AKONDO</span>
-            , a passionate <strong>Frontend & MERN Stack Developer</strong>{" "}
-            dedicated to building high-quality web applications that provide
-            excellent user experiences.
-          </motion.p>
-
-          {/* Bio 2 */}
-          <motion.p
-            variants={item}
-            className="mb-6 sm:mb-10 text-gray-400 leading-relaxed max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl text-sm sm:text-base md:text-lg lg:text-xl"
-          >
-            I specialize in creating responsive, fast, and scalable apps using
-            <span className="text-cyan-400 font-semibold">
-              {" "}
-              React.js, Node.js, Express{" "}
-            </span>
-            and <span className="text-cyan-400 font-semibold"> MongoDB.</span> I
-            enjoy working with modern technologies and continuously learning to
-            keep up with industry trends.
-          </motion.p>
-
-          {/* Skills */}
+          {/* Right Side: Narrative Section */}
           <motion.div
-            variants={item}
-            className="flex flex-wrap justify-center md:justify-start gap-2"
+            variants={container}
+            className="flex-1 space-y-8 text-center lg:text-left"
           >
-            {[
-              "React.js",
-              "Node.js",
-              "Express.js",
-              "MongoDB",
-              "JavaScript",
-              "Tailwind CSS",
-              "Git & GitHub",
-            ].map((skill, i) => (
-              <span
-                key={i}
-                className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-full"
-              >
-                {skill}
+            <motion.div variants={item} className="space-y-4">
+              <span className="text-cyan-400 font-mono tracking-[0.3em] text-xs md:text-sm uppercase">
+                Get to know me
               </span>
-            ))}
-          </motion.div>
+              <h2 className="text-2xl md:text-3xl xl:text-4xl font-black text-white leading-tight font1">
+                A Visionary{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                  MERN Developer
+                </span>
+              </h2>
+            </motion.div>
 
-          {/* Buttons */}
-          <motion.div
-            variants={item}
-            className="flex flex-wrap justify-center md:justify-start gap-4 mt-6"
-          >
-            <a
-              href="/Riyaz.pdf"
-              download
-              className="px-6 py-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-md shadow-md hover:scale-105 transition-all"
+            <motion.div variants={item} className="space-y-6">
+              <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed font2">
+                I am{" "}
+                <span className="text-white font-medium italic">
+                  MD RIYAZ AKONDO
+                </span>
+                . My journey in tech is driven by a passion for creating
+                high-performance web applications that bridge the gap between
+                user needs and complex business logic.
+              </p>
+              <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed font2">
+                With a deep focus on the{" "}
+                <span className="text-cyan-400">MERN Stack</span>, I build
+                products that are not only functional but also scalable and
+                secure. My goal is to deliver clean, maintainable code with
+                every project.
+              </p>
+            </motion.div>
+
+            {/* Core Tech Grid */}
+            <motion.div
+              variants={item}
+              className="flex flex-wrap justify-center lg:justify-start gap-3"
             >
-              Download Resume
-            </a>
-            <Link
-              to="/contact"
-              href="#contact"
-              className="px-6 py-2 border border-cyan-400 text-cyan-400 font-semibold rounded-md hover:bg-cyan-400 hover:text-white transition-all"
+              {[
+                "Frontend",
+                "Backend",
+                "Rest API",
+                "Authentication",
+                "Cloud Database",
+                "Git Flow",
+              ].map((tag, i) => (
+                <div
+                  key={i}
+                  className="px-5 py-2 rounded-xl bg-slate-800/40 border border-slate-700/50 text-slate-300 text-sm font-semibold hover:border-cyan-500/50 transition-colors"
+                >
+                  {tag}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              variants={item}
+              className="flex flex-wrap justify-center lg:justify-start gap-6 pt-6"
             >
-              Hire Me
-            </Link>
+              <a
+                href="/Riyaz.pdf"
+                download
+                className="px-10 py-4 bg-cyan-500 text-slate-950 font-black rounded-2xl shadow-[0_15px_30px_rgba(34,211,238,0.2)] hover:scale-105 transition-transform uppercase tracking-widest text-sm"
+              >
+                Get CV
+              </a>
+              <Link
+                to="/contact"
+                className="px-10 py-4 border-2 border-slate-700 text-white font-bold rounded-2xl hover:bg-white/5 transition-all uppercase tracking-widest text-sm"
+              >
+                Hire Me
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
-    </div>
+      </div>
+    </section>
   );
 };
 

@@ -1,5 +1,13 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  HiOutlineExternalLink,
+  HiOutlineCode,
+  HiOutlineArrowLeft,
+} from "react-icons/hi";
 import Loading from "./Loading";
 
 const ProjectDetails = () => {
@@ -7,6 +15,7 @@ const ProjectDetails = () => {
   const [project, setProject] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch("/portfolio.json")
       .then((res) => res.json())
       .then((data) => {
@@ -16,197 +25,190 @@ const ProjectDetails = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!project) {
-    return (
-      <div className="min-h-[87vh] flex items-center justify-center text-xl">
-        <Loading />
-      </div>
-    );
-  }
+  if (!project) return <Loading />;
 
   return (
-    <div className="min-h-[87vh] max-w-6xl mx-auto p-6 space-y-8 text-gray-700 dark:text-white">
-      {/* Main Image */}
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full rounded-xl shadow-lg h-[300px] md:h-[550px] object-cover"
-      />
-      {/* Title */}
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text dark:from-cyan-300 dark:to-blue-400">
-        {project.title}
-      </h1>
-      {/* Year + Tags */}
-      <div className="flex flex-wrap gap-3 items-center">
-        <span className="bg-cyan-500 text-white px-3 py-1 rounded-md text-sm">
-          {project.year}
-        </span>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen py-20 px-6 bg-transparent"
+    >
+      <div className="max-w-[1200px] mx-auto">
+        {/* Back Button */}
+        <Link
+          to="/project"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors mb-10 group"
+        >
+          <HiOutlineArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Projects</span>
+        </Link>
 
-        {project.tags?.map((tag, idx) => (
-          <span
-            key={idx}
-            className="text-sm px-3 py-1 border border-cyan-400 dark:border-cyan-300 rounded-md text-cyan-600 dark:text-cyan-300 font-medium"
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row gap-12 mb-16">
+          {/* Main Image Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="lg:w-2/3 relative group"
           >
-            #{tag}
-          </span>
-        ))}
-      </div>
-      {/* Basic Info Section */}
-      <div className="grid md:grid-cols-3 gap-6">
-        {/* Left Info */}
-        <div className="space-y-3">
-          <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300">
-            Project Info
-          </h3>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <img
+              src={project.image}
+              alt={project.title}
+              className="relative w-full rounded-2xl shadow-2xl h-[350px] md:h-[500px] object-cover border border-slate-700/50"
+            />
+          </motion.div>
 
-          <p className="text-sky-400/90">
-            <span className="font-bold ">Category:</span> {project.category}
-          </p>
-          <p className="text-sky-400/90">
-            <span className="font-bold ">Role:</span> {project.role}
-          </p>
-          <p className="text-sky-400/90">
-            <span className="font-bold ">Duration:</span> {project.duration}
-          </p>
+          {/* Quick Info Sidebar */}
+          <div className="lg:w-1/3 space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                {project.title}
+              </h1>
+              <div className="flex flex-wrap gap-2">
+                {project.tags?.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full border border-cyan-400/20"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-          <div>
-            <p className="font-bold mb-1 text-sky-400/90">Tools Used:</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tools?.map((tool, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 text-sm border border-cyan-400 dark:border-cyan-300 rounded-md text-cyan-600 dark:text-cyan-300"
-                >
-                  {tool}
-                </span>
-              ))}
+            <div className="grid grid-cols-2 gap-6 p-6 bg-slate-800/30 backdrop-blur-xl border border-slate-700/50 rounded-2xl">
+              <div>
+                <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mb-1">
+                  Year
+                </p>
+                <p className="text-white font-medium">{project.year}</p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mb-1">
+                  Role
+                </p>
+                <p className="text-white font-medium">{project.role}</p>
+              </div>
+              <div className="col-span-2 border-t border-slate-700/50 pt-4">
+                <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mb-2">
+                  Tech Stack
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack?.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-2 py-1 bg-slate-900/50 text-slate-300 rounded border border-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-4">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-4 bg-cyan-500 text-slate-950 font-black rounded-xl hover:bg-cyan-400 transition-all shadow-[0_10px_20px_rgba(34,211,238,0.2)]"
+              >
+                Live Preview <HiOutlineExternalLink size={20} />
+              </a>
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-4 bg-slate-800 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-700 transition-all"
+              >
+                Source Code <HiOutlineCode size={20} />
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Description Section */}
-        <div className="md:col-span-2">
-          <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300 mb-2">
-            Description
-          </h3>
-          <p className="text-sky-400/90 leading-relaxed">
-            {project.description}
-          </p>
-        </div>
-      </div>
-      {/* Tech Stack */}
-      <div>
-        <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300 mb-2">
-          Tech Stack:
-        </h3>
-        <div className="flex flex-wrap gap-3">
-          {project.techStack?.map((tech, idx) => (
-            <span
-              key={idx}
-              className="text-sm px-3 py-1 border border-cyan-400 dark:border-cyan-300 rounded-md text-cyan-600 dark:text-cyan-300 font-medium"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-      {/* Features */}
-      {project.features && (
-        <div>
-          <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300 mb-2">
-            Features:
-          </h3>
-          <ul className="list-disc pl-6 space-y-2 text-sky-400/90">
-            {project.features.map((f, i) => (
-              <li key={i}>{f}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {/* Highlights */}
-      <div>
-        <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300 mb-2">
-          Highlights:
-        </h3>
-        <ul className="list-disc pl-6 space-y-2 text-sky-400/90">
-          {project.highlights?.map((point, idx) => (
-            <li key={idx}>{point}</li>
-          ))}
-        </ul>
-      </div>
-      {/* Challenges */}
-      {project.challenges && (
-        <div>
-          <h3 className="text-xl font-bold text-red-400 dark:text-red-300 mb-2">
-            Challenges:
-          </h3>
-          <ul className="list-disc pl-6 space-y-2 text-sky-400/90">
-            {project.challenges.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {/* Solutions */}
-      {project.solutions && (
-        <div>
-          <h3 className="text-xl font-bold text-green-500 dark:text-green-300 mb-2">
-            Solutions:
-          </h3>
-          <ul className="list-disc pl-6 space-y-2 text-sky-400/90">
-            {project.solutions.map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {/* Screenshot Gallery
-      {project.screenshots && (
-        <div>
-          <h3 className="text-xl font-bold text-cyan-500 dark:text-cyan-300 mb-3">
-            Screenshots:
-          </h3>
+        {/* Detailed Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-12 border-t border-slate-800 pt-16">
+          <div className="lg:col-span-2 space-y-12">
+            {/* Description */}
+            <section>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                The Challenge
+              </h3>
+              <p className="text-slate-400 leading-relaxed text-lg">
+                {project.description}
+              </p>
+            </section>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {project.screenshots.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt="Project screenshot"
-                className="rounded-lg shadow-md object-cover"
-              />
-            ))}
+            {/* Features */}
+            {project.features && (
+              <section className="grid md:grid-cols-2 gap-8">
+                <div className="bg-slate-800/20 p-8 rounded-3xl border border-slate-700/30">
+                  <h3 className="text-xl font-bold text-cyan-400 mb-6">
+                    Key Features
+                  </h3>
+                  <ul className="space-y-4">
+                    {project.features.map((f, i) => (
+                      <li key={i} className="flex gap-3 text-slate-300 text-sm">
+                        <span className="text-cyan-500 font-bold">
+                          0{i + 1}.
+                        </span>{" "}
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-slate-800/20 p-8 rounded-3xl border border-slate-700/30">
+                  <h3 className="text-xl font-bold text-purple-400 mb-6">
+                    Highlights
+                  </h3>
+                  <ul className="space-y-4">
+                    {project.highlights?.map((h, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-3 text-slate-300 text-sm italic"
+                      >
+                        <span className="text-purple-500">✦</span> {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* Problem & Solution Sidebar */}
+          <div className="space-y-8">
+            {project.challenges && (
+              <div className="p-8 bg-red-500/5 border border-red-500/10 rounded-3xl">
+                <h4 className="text-red-400 font-bold mb-4 flex items-center gap-2">
+                  Challenges
+                </h4>
+                <ul className="space-y-3 text-sm text-slate-400">
+                  {project.challenges.map((c, i) => (
+                    <li key={i}>• {c}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {project.solutions && (
+              <div className="p-8 bg-green-500/5 border border-green-500/10 rounded-3xl">
+                <h4 className="text-green-400 font-bold mb-4 flex items-center gap-2">
+                  Solution
+                </h4>
+                <ul className="space-y-3 text-sm text-slate-400">
+                  {project.solutions.map((s, i) => (
+                    <li key={i}>• {s}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
-      )} */}
-      {/* Buttons */}
-      <div className="flex flex-wrap gap-4 mt-5">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-md shadow-md transition"
-        >
-          Live Demo
-        </a>
-
-        <a
-          href={project.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-5 py-2 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md shadow-md transition"
-        >
-          Source Code
-        </a>
-
-        <Link
-          to="/project"
-          className="px-5 py-2 border border-cyan-500 dark:border-cyan-300 text-cyan-600 dark:text-cyan-300 rounded-md hover:bg-cyan-500 hover:text-white transition"
-        >
-          Back to Projects
-        </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

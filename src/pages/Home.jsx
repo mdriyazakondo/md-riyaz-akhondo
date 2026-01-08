@@ -8,9 +8,9 @@ import Contact from "./Contact";
 
 const Home = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className=" mx-auto">
       <HomeRoot />
-      <Expreance />
+      {/* <Expreance /> */}
       <About />
       <SkillSection />
       <ProjectSection />
